@@ -1,21 +1,28 @@
 #include <stdio.h>
+#include <math.h>
 
 int search(int numbers[], int low, int high, int value) 
 {
-	if (low > high) // if the low become greater than high, that means the value searched for was not found
+	int half = (high + low) / 2;
+	if (abs(high - low) == 0 || abs(high - low) == 1)
 	{
-		return -1; // return -1
+		return -1;
 	}
-	else 
+	else
 	{
-		if (numbers[low] == value) // if the value is found
+		if(numbers[half] == value)
 		{
-			return low; // return the index, "low"
+			return half;
 		}
-		else // if the value is not found
+		else if(numbers[half] < value)
 		{
-			search(numbers, low + 1, high, value); // call the next index by incrementing the value of low and recall the function
+			low = half;
 		}
+		else if(numbers[half] > value)
+		{
+			high = half;
+		}
+		search(numbers, low, high, value);
 	}
 
 	
