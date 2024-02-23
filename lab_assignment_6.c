@@ -2,7 +2,24 @@
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+	if (low > high) // if the low become greater than high, that means the value searched for was not found
+	{
+		return -1; // return -1
+	}
+	else 
+	{
+		if (numbers[low] == value) // if the value is found
+		{
+			return low; // return the index, "low"
+		}
+		else // if the value is not found
+		{
+			search(numbers, low + 1, high, value); // call the next index by incrementing the value of low and recall the function
+		}
+	}
+
+	
+	
 }
 
 void printArray(int numbers[], int sz)
@@ -58,3 +75,4 @@ int main(void)
 
 	fclose(inFile);
 }
+
